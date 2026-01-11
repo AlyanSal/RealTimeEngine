@@ -6,8 +6,25 @@
 
 #define INVALID_ENTRY UINT32_MAX
 
+struct ComponentCounter {
+  static int counter;
+};
+int ComponentCounter::counter = 0;
+
 template <typename T>
-class ComponentStore {
+int GetComponentID() {
+  static int id = ComponentCounter::counter++;
+  return id;
+}
+
+class InterfaceComponentStore {
+public:
+  virtual ~InterfaceComponentStore() = default;
+  virtual void genericRemove(Entity e) = 0;
+};
+
+template <typename T>
+class ComponentStore : public InterfaceComponentStore {
   void init(Arena& arena, uint32_t maxEntities, uint32_t maxComponents) {
     m_data = arena.allocArray<T>(maxComponents);
     m_entities = arena.allocArray<Entity>(maxComponents);
@@ -39,7 +56,7 @@ class ComponentStore {
     m_entities[index] = e.id;
   }
 
-  void remove(Entity e) {
+  void genericRemove(Entity e) override {
     assert(has(e));
 
     uint32_t index = m_sparse[e.id];

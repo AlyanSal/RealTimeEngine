@@ -1,8 +1,0 @@
-[
-{
-  "directory": "C:/Users/sah24/OneDrive/Desktop/University/Projects/Engine/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/testing.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\testing.dir\\testing\\test.cpp.obj -c C:\\Users\\sah24\\OneDrive\\Desktop\\University\\Projects\\Engine\\testing\\test.cpp",
-  "file": "C:/Users/sah24/OneDrive/Desktop/University/Projects/Engine/testing/test.cpp",
-  "output": "CMakeFiles/testing.dir/testing/test.cpp.obj"
-}
-]

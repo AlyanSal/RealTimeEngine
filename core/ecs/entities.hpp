@@ -13,9 +13,12 @@ protected:
 
 class EntityRecord {
 protected:
-  EntityRecord(uint32_t gen = 0, uint32_t mask = 0) : generation{gen}, componentsMask{mask} {};
+  EntityRecord(uint32_t nextFree, uint32_t gen = 0, uint32_t mask = 0) : generation{gen}, componentsMask{mask} {};
   uint32_t generation;
-  uint32_t componentsMask;
+  union {
+    uint32_t componentsMask;
+    uint32_t nextFree;
+  };
 
   friend EntityManager;
 };
